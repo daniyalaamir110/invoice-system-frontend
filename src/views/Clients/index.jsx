@@ -1,5 +1,7 @@
+import Table from "../../components/Table";
+
 const Clients = () => {
-  return <>Client</>;
+  return <div>{/* <Table /> */}</div>;
 };
 
 export default Clients;

@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "../components/Layout";
-import { getMenu } from "./menu";
+import useMenu from "../hooks/useMenu";
 
 const Router = () => {
-  const menu = getMenu();
+  const menu = useMenu();
 
   return (
     <BrowserRouter>

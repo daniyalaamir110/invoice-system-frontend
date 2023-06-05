@@ -1,7 +1,11 @@
 import { useState } from "react";
+import useMenu from "../../hooks/useMenu";
 import SidebarItem from "./SidebarItem";
+import useCurrentRoute from "../../hooks/useCurrentRoute";
 
-const Sidebar = ({ menu }) => {
+const Sidebar = () => {
+  const menu = useMenu();
+  const currentRoute = useCurrentRoute();
   const [search, setSearch] = useState("");
 
   const handleSearchChange = ({ target: { value } }) => setSearch(value);
@@ -33,6 +37,7 @@ const Sidebar = ({ menu }) => {
         </div>
         {navItems.map((item, idx) => (
           <SidebarItem
+            active={currentRoute?.path === item.path}
             path={item.path}
             title={item.title}
             icon={item.icon}
