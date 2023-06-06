@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
     <main className="flex flex-row">
       <Sidebar />
       <div className="flex-1 p-5">
-        <h1 className="text-4xl font-bold my-4">{currentRoute.title}</h1>
+        <h1 className="text-4xl font-bold my-4">{currentRoute?.title}</h1>
         <div className="w-full">{children}</div>
       </div>
     </main>

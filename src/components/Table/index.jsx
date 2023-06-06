@@ -1,4 +1,4 @@
-const Table = ({ heads, nameKey, valueKey, data }) => {
+const Table = ({ heads = [], data = [] }) => {
   return (
     <div className="flex flex-col overflow-x-auto">
       <div className="sm:-mx-6 lg:-mx-8">
@@ -12,7 +12,7 @@ const Table = ({ heads, nameKey, valueKey, data }) => {
                   </th>
                   {heads.map((head, idx) => (
                     <th key={idx} scope="col" className="px-6 py-4">
-                      {head[nameKey]}
+                      {head.title}
                     </th>
                   ))}
                 </tr>
@@ -23,7 +23,17 @@ const Table = ({ heads, nameKey, valueKey, data }) => {
                     <td className="whitespace-nowrap px-6 py-4 font-medium">
                       {idx + 1}
                     </td>
-                    <td className="whitespace-nowrap px-6 py-4">Cell</td>
+                    {heads.map((head, idx) => {
+                      let value = row[head.key];
+                      if (head.convertor) {
+                        value = head.convertor(value);
+                      }
+                      return (
+                        <td key={idx} className="whitespace-nowrap px-6 py-4">
+                          {value}
+                        </td>
+                      );
+                    })}
                   </tr>
                 ))}
               </tbody>

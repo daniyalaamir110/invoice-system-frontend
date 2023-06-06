@@ -15,8 +15,8 @@ const Sidebar = () => {
   );
 
   return (
-    <aside className="bg-blue-600">
-      <div className="sidebar p-2 w-[300px] h-[100vh] overflow-y-auto text-center bg-gray-900">
+    <aside className="bg-gray-900 w-[300px]">
+      <div className="sidebar p-2 overflow-y-auto text-center">
         <div className="text-gray-100 text-xl my-4">
           <div className="p-2.5 mt-1 flex items-center">
             <i className="bi bi-upc-scan px-2 py-1 rounded-md bg-violet-600"></i>
