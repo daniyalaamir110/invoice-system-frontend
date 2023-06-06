@@ -35,6 +35,7 @@ const Clients = () => {
         />
       </ActionBar>
       <Table
+        count={100}
         heads={[
           {
             title: "Client ID",

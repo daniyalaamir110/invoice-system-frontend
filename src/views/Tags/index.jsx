@@ -35,6 +35,7 @@ const Tags = () => {
         />
       </ActionBar>
       <Table
+        count={100}
         heads={[
           {
             title: "Tag ID",
