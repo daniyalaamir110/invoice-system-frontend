@@ -1,4 +1,5 @@
 import AddClient from "../views/AddClient";
+import AddTag from "../views/AddTag";
 
 const useOtherRoutes = () => {
   return [
@@ -16,7 +17,23 @@ const useOtherRoutes = () => {
           title: "Add client",
         },
       ],
+      
     },
+    {
+      path: "/tag/add",
+      title: "Add tag",
+      element: <AddTag />,
+      breadcrumbs: [
+        {
+          path: "/tag",
+          title: "Tags",
+        },
+        {
+          path: "/tag/add",
+          title: "Add tag",
+        },
+      ],
+    }
   ];
 };
 

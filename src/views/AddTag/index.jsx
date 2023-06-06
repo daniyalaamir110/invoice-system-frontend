@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TextInput from "../../components/TextInput";
 
-const AddClient = () => {
+const AddTag = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
 
   return (
     <div>
-      <TextInput label="Client ID" />
-      <TextInput label="Client Name" />
-      <TextInput label="Company Name" />
+      <TextInput label="Tag Name" />
+      <TextInput label="Price ($)" />
       <Button
         text="Submit"
         variant="primary"
@@ -20,7 +19,7 @@ const AddClient = () => {
           setLoading(true);
           setTimeout(() => {
             setLoading(false);
-            navigate("/client");
+            navigate("/tag");
           }, 1000);
         }}
         loading={loading}
@@ -45,4 +44,4 @@ const AddClient = () => {
   );
 };
 
-export default AddClient;
+export default AddTag;

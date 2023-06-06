@@ -1,4 +1,5 @@
 import useCurrentRoute from "../../hooks/useCurrentRoute";
+import Breadcrumbs from "../Breadcrumbs";
 import Sidebar from "./Sidebar";
 
 const Layout = ({ children }) => {
@@ -15,6 +16,7 @@ const Layout = ({ children }) => {
         {/* {currentRoute.breadcrumbs.map((breadcrumb, idx) => (
           <div key={idx}>{breadcrumb.title}</div>
         ))} */}
+        <Breadcrumbs breadcrumbs={currentRoute?.breadcrumbs} />
         <h1 className="text-4xl font-bold my-4">{currentRoute?.title}</h1>
         <div className="w-full">{children}</div>
       </div>
