@@ -2,8 +2,11 @@ import Button from "../../components/Button";
 import ActionBar from "../../components/ActionBar";
 import Table from "../../components/Table";
 import clients from "./clients.json";
+import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <ActionBar>
@@ -11,7 +14,9 @@ const Clients = () => {
           text="Add new client"
           icon="bi bi-plus"
           variant="primary"
-          action={() => {}}
+          action={() => {
+            navigate("/client/add");
+          }}
         />
       </ActionBar>
       <Table
@@ -31,10 +36,22 @@ const Clients = () => {
           {
             title: "Active",
             key: "active",
-            convertor: (active) => (active ? "Yes" : "No"),
+            convertor: (active) => (active ? "Active" : "Inactive"),
+            showAsBooleanTag: true,
           },
         ]}
         data={clients}
+        actions={[
+          {
+            title: "Edit",
+            handler: () => {},
+          },
+          {
+            title: "Delete",
+            variant: "danger",
+            handler: () => {},
+          },
+        ]}
       />
     </div>
   );

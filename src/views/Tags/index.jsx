@@ -31,6 +31,17 @@ const Tags = () => {
           },
         ]}
         data={tags}
+        actions={[
+          {
+            title: "Edit",
+            handler: () => {},
+          },
+          {
+            title: "Delete",
+            variant: "danger",
+            handler: () => {},
+          },
+        ]}
       />
     </div>
   );

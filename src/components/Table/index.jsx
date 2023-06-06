@@ -1,4 +1,8 @@
-const Table = ({ heads = [], data = [] }) => {
+import ActionMenu from "../ActionMenu";
+
+const Table = ({ heads = [], data = [], actions = [] }) => {
+  const hasActions = !!actions.length;
+
   return (
     <div className="flex flex-col overflow-x-auto">
       <div className="sm:-mx-6 lg:-mx-8">
@@ -15,6 +19,11 @@ const Table = ({ heads = [], data = [] }) => {
                       {head.title}
                     </th>
                   ))}
+                  {hasActions && (
+                    <th scope="col" className="px-6 py-4">
+                      Actions
+                    </th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -25,15 +34,28 @@ const Table = ({ heads = [], data = [] }) => {
                     </td>
                     {heads.map((head, idx) => {
                       let value = row[head.key];
+                      let tagClasses = "";
+                      if (head.showAsBooleanTag) {
+                        tagClasses = `${
+                          !!value
+                            ? "text-green-600 bg-green-100"
+                            : "text-red-600 bg-red-100"
+                        } px-3 py-1 rounded-md font-medium`;
+                      }
                       if (head.convertor) {
                         value = head.convertor(value);
                       }
                       return (
                         <td key={idx} className="whitespace-nowrap px-6 py-4">
-                          {value}
+                          <span className={tagClasses}>{value}</span>
                         </td>
                       );
                     })}
+                    {hasActions && (
+                      <td className="whitespace-nowrap px-6 py-4 font-medium">
+                        <ActionMenu actions={actions} />
+                      </td>
+                    )}
                   </tr>
                 ))}
               </tbody>
