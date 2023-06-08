@@ -34,7 +34,7 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
                 {data.slice(page * 10, (page + 1) * 10).map((row, idx) => (
                   <tr className="border-b dark:border-neutral-500">
                     <td className="whitespace-nowrap px-6 py-3 font-medium">
-                      {idx + 1}
+                      {page * 10 + idx + 1}
                     </td>
                     {heads.map((head, idx) => {
                       let value = row[head.key];
@@ -92,11 +92,15 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
             </button>
           </li>
           {new Array(pageCount).fill(0).map((_, idx) => {
+            const isCurrent = page === idx;
             return (
               <li key={idx}>
                 <button
                   onClick={() => setPage(idx)}
-                  className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  disabled={isCurrent}
+                  className={`block px-3 py-2 ml-0 leading-tight ${
+                    isCurrent && "font-medium text-black"
+                  } text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                 >
                   {idx + 1}
                 </button>

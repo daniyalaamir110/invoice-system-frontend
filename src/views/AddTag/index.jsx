@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import TextInput from "../../components/TextInput";
+import { CheckIcon } from "../../icons";
 
 const AddTag = () => {
   const navigate = useNavigate();
@@ -9,7 +10,7 @@ const AddTag = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div>
+    <div className="pt-5">
       <TextInput label="Tag Name" />
       <TextInput label="Price ($)" />
       <Button
@@ -23,22 +24,7 @@ const AddTag = () => {
           }, 1000);
         }}
         loading={loading}
-        icon={
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-6 h-6 mr-3"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.5 12.75l6 6 9-13.5"
-            />
-          </svg>
-        }
+        icon={<CheckIcon />}
       />
     </div>
   );
