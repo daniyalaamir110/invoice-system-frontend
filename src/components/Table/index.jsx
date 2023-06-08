@@ -77,7 +77,7 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
           <li>
             <button
               disabled={isFirst}
-              className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="block px-3 py-2 ml-0 text-sm leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               onClick={() => {
                 if (!isFirst) {
                   setPage(page - 1);
@@ -88,18 +88,22 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
               <PrevIcon />
             </button>
           </li>
-          {new Array(pageCount).fill(0).map((_, idx) => {
-            const isCurrent = page === idx;
+          {new Array(Math.min(pageCount, 10)).fill(0).map((_, idx) => {
+            const diff = Math.min(pageCount - page - 5, 0);
+            console.log(diff);
+            const min = Math.max(0, page - 5 + diff);
+            const thisPage = min + idx;
+            const isCurrent = thisPage === page;
             return (
               <li key={idx}>
                 <button
-                  onClick={() => setPage(idx)}
+                  onClick={() => setPage(thisPage)}
                   disabled={isCurrent}
                   className={`block px-3 py-2 ml-0 leading-tight ${
                     isCurrent && "font-medium text-black"
-                  } text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                  } text-gray-500 bg-white border border-gray-300 text-sm w-[50px] hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
                 >
-                  {idx + 1}
+                  {thisPage + 1}
                 </button>
               </li>
             );
@@ -107,7 +111,7 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
           <li>
             <button
               disabled={isLast}
-              className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="block px-3 py-2 leading-tight text-sm text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
               onClick={() => {
                 if (!isLast) {
                   setPage(page + 1);

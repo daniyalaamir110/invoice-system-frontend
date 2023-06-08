@@ -1,5 +1,5 @@
 import _ from "lodash";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const AutoComplete = ({
   value,
@@ -12,12 +12,19 @@ const AutoComplete = ({
   const inputRef = useRef();
 
   const [text, setText] = useState("");
+  const [focused, setFocused] = useState(false);
 
   const handleLabelClick = () => {
     inputRef.current.focus();
   };
 
-  const focused = document.activeElement === inputRef.current;
+  useEffect(() => {
+    const handleFocus = () => {
+      const focused = document.activeElement === inputRef.current;
+      setFocused(focused);
+    };
+    document.addEventListener("focus", handleFocus, true);
+  }, []);
 
   const filteredOptions = _.filter(options, (option) => {
     for (const field of searchBy) {
@@ -53,27 +60,30 @@ const AutoComplete = ({
         onFocus={({ target }) => {
           target.select();
         }}
+        onBlur={() => setText(valueToShow)}
       />
-      {focused && (
-        <div className="absolute w-full bg-white border-2 border-violet-100 max-h-[256px] overflow-y-scroll">
-          {filteredOptions.map((option, idx) => {
-            const value = convertor ? convertor(option) : option;
-            return (
-              <button
-                key={idx}
-                className="p-1 w-full hover:bg-gray-200 text-left"
-                onClick={() => {
-                  setText(value);
-                  setValue(option);
-                  inputRef.current.blur();
-                }}
-              >
-                {value}
-              </button>
-            );
-          })}
-        </div>
-      )}
+      <div
+        className={`absolute ${
+          !focused && "hidden"
+        } w-full bg-white border-2 border-violet-100 max-h-[256px] overflow-y-scroll`}
+      >
+        {filteredOptions.map((option, idx) => {
+          const value = convertor ? convertor(option) : option;
+          return (
+            <button
+              key={idx}
+              className="p-1 w-full hover:bg-gray-200 text-left"
+              onClick={() => {
+                setText(value);
+                setValue(option);
+                inputRef.current.blur();
+              }}
+            >
+              {value}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 };

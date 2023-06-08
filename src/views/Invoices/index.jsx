@@ -4,13 +4,45 @@ import Button from "../../components/Button";
 import Table from "../../components/Table";
 import { PlusIcon } from "../../icons";
 import invoices from "./invoices.json";
+import SelectInput from "../../components/SelectInput";
+import { useState } from "react";
+import _ from "lodash";
 
 const Invoices = () => {
   const navigate = useNavigate();
+  const [status, setStatus] = useState("all");
+
+  const filteredInvoices =
+    status === "all"
+      ? invoices
+      : _.filter(invoices, (invoice) => invoice.status === (status === "paid"));
+
+  const count = filteredInvoices.length;
 
   return (
     <div>
       <ActionBar>
+        <SelectInput
+          label="Status"
+          options={[
+            {
+              label: "All",
+              value: "all",
+            },
+            {
+              label: "Paid",
+              value: "paid",
+            },
+            {
+              label: "Unpaid",
+              value: "unpaid",
+            },
+          ]}
+          labelKey="label"
+          valueKey="value"
+          value={status}
+          setValue={setStatus}
+        />
         <Button
           action={() => {
             navigate("/invoice/create");
@@ -20,7 +52,7 @@ const Invoices = () => {
         />
       </ActionBar>
       <Table
-        count={100}
+        count={count}
         heads={[
           {
             title: "Invoice ID",
@@ -37,7 +69,7 @@ const Invoices = () => {
           {
             title: "Status",
             key: "status",
-            convertor: (active) => (active ? "Unpaid" : "Paid"),
+            convertor: (active) => (active ? "Paid" : "Unpaid"),
             showAsBooleanTag: true,
           },
           {
@@ -50,7 +82,7 @@ const Invoices = () => {
             convertor: (amount) => `$${amount}`,
           },
         ]}
-        data={invoices}
+        data={filteredInvoices}
         actions={[
           {
             title: "Edit",
