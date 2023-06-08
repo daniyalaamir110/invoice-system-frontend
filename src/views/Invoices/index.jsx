@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import ActionBar from "../../components/ActionBar";
 import Button from "../../components/Button";
 import Table from "../../components/Table";
@@ -5,11 +6,15 @@ import { PlusIcon } from "../../icons";
 import invoices from "./invoices.json";
 
 const Invoices = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <ActionBar>
         <Button
-          action={() => {}}
+          action={() => {
+            navigate("/invoice/create");
+          }}
           icon={<PlusIcon />}
           text="Create new invoice"
         />
@@ -42,6 +47,7 @@ const Invoices = () => {
           {
             title: "Amount",
             key: "amount",
+            convertor: (amount) => `$${amount}`,
           },
         ]}
         data={invoices}

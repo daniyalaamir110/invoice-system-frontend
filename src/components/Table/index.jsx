@@ -1,11 +1,15 @@
 import { useState } from "react";
 import ActionMenu from "../ActionMenu";
+import { NextIcon, PrevIcon } from "../../icons";
 
 const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
   const [page, setPage] = useState(0);
 
   const hasActions = !!actions.length;
   const pageCount = Math.ceil(count / 10);
+
+  const isFirst = page === 0;
+  const isLast = page + 1 === pageCount;
 
   return (
     <div className="flex flex-col overflow-x-auto">
@@ -32,7 +36,7 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
               </thead>
               <tbody>
                 {data.slice(page * 10, (page + 1) * 10).map((row, idx) => (
-                  <tr className="border-b dark:border-neutral-500">
+                  <tr className="border-b dark:border-neutral-500" key={idx}>
                     <td className="whitespace-nowrap px-6 py-3 font-medium">
                       {page * 10 + idx + 1}
                     </td>
@@ -72,23 +76,16 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
         <ul className="inline-flex items-center -space-x-px my-4">
           <li>
             <button
-              href="#"
+              disabled={isFirst}
               className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              onClick={() => {
+                if (!isFirst) {
+                  setPage(page - 1);
+                }
+              }}
             >
               <span className="sr-only">Previous</span>
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+              <PrevIcon />
             </button>
           </li>
           {new Array(pageCount).fill(0).map((_, idx) => {
@@ -109,23 +106,16 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
           })}
           <li>
             <button
-              href="#"
+              disabled={isLast}
               className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              onClick={() => {
+                if (!isLast) {
+                  setPage(page + 1);
+                }
+              }}
             >
               <span className="sr-only">Next</span>
-              <svg
-                aria-hidden="true"
-                className="w-5 h-5"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
+              <NextIcon />
             </button>
           </li>
         </ul>

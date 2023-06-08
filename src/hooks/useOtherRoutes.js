@@ -1,5 +1,6 @@
 import AddClient from "../views/AddClient";
 import AddTag from "../views/AddTag";
+import CreateInvoice from "../views/CreateInvoice";
 
 const useOtherRoutes = () => {
   return [
@@ -17,7 +18,6 @@ const useOtherRoutes = () => {
           title: "Add client",
         },
       ],
-      
     },
     {
       path: "/tag/add",
@@ -33,7 +33,22 @@ const useOtherRoutes = () => {
           title: "Add tag",
         },
       ],
-    }
+    },
+    {
+      path: "/invoice/create",
+      title: "Create invoice",
+      element: <CreateInvoice />,
+      breadcrumbs: [
+        {
+          path: "/invoice",
+          title: "Invoices",
+        },
+        {
+          path: "/invoice/create",
+          title: "Create invoice",
+        },
+      ],
+    },
   ];
 };
 
