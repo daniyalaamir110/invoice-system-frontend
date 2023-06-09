@@ -5,7 +5,7 @@ export const PlusIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="w-6 h-6 mr-3"
+    className="w-6 h-6"
   >
     <path
       strokeLinecap="round"
@@ -19,7 +19,7 @@ export const LoadingIcon = () => (
   <svg
     aria-hidden="true"
     role="status"
-    className="inline w-6 h-6 mr-3 text-white animate-spin"
+    className="inline w-6 h-6 text-white animate-spin"
     viewBox="0 0 100 101"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +42,7 @@ export const CheckIcon = () => (
     viewBox="0 0 24 24"
     strokeWidth={1.5}
     stroke="currentColor"
-    className="w-6 h-6 mr-3"
+    className="w-6 h-6"
   >
     <path
       strokeLinecap="round"
@@ -81,5 +81,23 @@ export const NextIcon = () => (
       d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
       clipRule="evenodd"
     ></path>
+  </svg>
+);
+
+export const DeleteIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    strokeWidth={1.5}
+    stroke="currentColor"
+    className="w-6 h-6"
+  >
+    <path
+      stroke="red"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+    />
   </svg>
 );

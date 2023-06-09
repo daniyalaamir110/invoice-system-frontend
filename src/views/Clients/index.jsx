@@ -1,9 +1,9 @@
-import Button from "../../components/Button";
+import { useNavigate } from "react-router-dom";
 import ActionBar from "../../components/ActionBar";
+import Button from "../../components/Button";
 import Table from "../../components/Table";
 import { PlusIcon } from "../../icons";
 import clients from "./clients.json";
-import { useNavigate } from "react-router-dom";
 
 const Clients = () => {
   const navigate = useNavigate();
@@ -50,7 +50,9 @@ const Clients = () => {
         actions={[
           {
             title: "Edit",
-            handler: () => {},
+            handler: (id) => {
+              navigate(`/client/edit/${id}`);
+            },
           },
           {
             title: "Delete",

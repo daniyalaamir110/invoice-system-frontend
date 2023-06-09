@@ -1,6 +1,7 @@
 import AddClient from "../views/AddClient";
 import AddTag from "../views/AddTag";
 import CreateInvoice from "../views/CreateInvoice";
+import EditClient from "../views/EditClient";
 
 const useOtherRoutes = () => {
   return [
@@ -16,6 +17,21 @@ const useOtherRoutes = () => {
         {
           path: "/client/add",
           title: "Add client",
+        },
+      ],
+    },
+    {
+      path: "/client/edit/:id",
+      title: "Edit client",
+      element: <EditClient />,
+      breadcrumbs: [
+        {
+          path: "/client",
+          title: "Clients",
+        },
+        {
+          path: "/client/edit/:id",
+          title: "Edit client",
         },
       ],
     },

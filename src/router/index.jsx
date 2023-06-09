@@ -11,14 +11,16 @@ const Router = () => {
 
   return (
     <BrowserRouter>
-      <Layout menu={menu}>
-        <Routes>
-          {routes.map((route, idx) => (
-            <Route path={route.path} element={route.element} key={idx} />
-          ))}
-          <Route path="/*" element={<Navigate to="/client" />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {routes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={<Layout menu={menu}>{route.element}</Layout>}
+            key={idx}
+          />
+        ))}
+        <Route path="/*" element={<Navigate to="/client" />} />
+      </Routes>
     </BrowserRouter>
   );
 };

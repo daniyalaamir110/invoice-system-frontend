@@ -4,6 +4,7 @@ import AutoComplete from "../../components/Autocomplete";
 import Button from "../../components/Button";
 import { CheckIcon } from "../../icons";
 import clients from "../Clients/clients.json";
+import MultiInput from "../../components/MultiInput";
 
 const CreateInvoice = () => {
   const navigate = useNavigate();
@@ -14,14 +15,19 @@ const CreateInvoice = () => {
 
   return (
     <div className="pt-5">
-      <AutoComplete
-        label="Client"
-        value={client}
-        setValue={setClient}
-        options={clients}
-        convertor={(client) => `${client.id} - ${client.name}`}
-        searchBy={["id", "name"]}
-      />
+      <div className="w-[50%]">
+        <AutoComplete
+          label="Client"
+          value={client}
+          setValue={setClient}
+          options={clients}
+          convertor={(client) => `${client.id} - ${client.name}`}
+          searchBy={["id", "name"]}
+        />
+      </div>
+      <div className="w-[50%]">
+        <MultiInput />
+      </div>
       <Button
         text="Submit"
         variant="primary"

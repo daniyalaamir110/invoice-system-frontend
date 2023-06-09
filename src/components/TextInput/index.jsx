@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const TextInput = ({ value, onChange, label }) => {
+const TextInput = ({ value, onChange, label, fullWidth }) => {
   const inputRef = useRef();
 
   const handleLabelClick = () => {
@@ -8,7 +8,7 @@ const TextInput = ({ value, onChange, label }) => {
   };
 
   return (
-    <div className="mb-6">
+    <div className={`${fullWidth ? "w-full" : ""} mb-6`}>
       <label
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         onClick={handleLabelClick}

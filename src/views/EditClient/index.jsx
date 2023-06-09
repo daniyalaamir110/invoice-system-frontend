@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import TextInput from "../../components/TextInput";
 import { CheckIcon } from "../../icons";
 
-const AddClient = () => {
+const EditClient = () => {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -31,4 +31,4 @@ const AddClient = () => {
   );
 };
 
-export default AddClient;
+export default EditClient;
