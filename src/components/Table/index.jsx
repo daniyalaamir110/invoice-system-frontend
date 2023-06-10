@@ -61,7 +61,12 @@ const Table = ({ heads = [], data = [], actions = [], count = 0 }) => {
                     })}
                     {hasActions && (
                       <td className="whitespace-nowrap px-6 py-3 font-medium">
-                        <ActionMenu actions={actions} />
+                        <ActionMenu
+                          actions={actions.map((action) => ({
+                            ...action,
+                            handler: () => action.handler(row.id),
+                          }))}
+                        />
                       </td>
                     )}
                   </tr>

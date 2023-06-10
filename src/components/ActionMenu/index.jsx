@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ActionMenu = ({ actions }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -16,12 +16,11 @@ const ActionMenu = ({ actions }) => {
   }
 
   return (
-    <>
+    <div>
       <button
         className="inline-flex p-2 items-center text-sm font-medium text-center text-gray-900 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none dark:text-white focus:ring-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         type="button"
         onClick={toggle}
-        onBlur={hide}
       >
         <svg
           className="w-5 h-5"
@@ -37,6 +36,7 @@ const ActionMenu = ({ actions }) => {
         className={`z-10 absolute ${
           collapsed ? "hidden" : ""
         } bg-white divide-y divide-gray-100 rounded-lg shadow w-32 dark:bg-gray-700 dark:divide-gray-600`}
+        onBlur={hide}
       >
         <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
           {actions.map((action, idx) => (
@@ -53,7 +53,7 @@ const ActionMenu = ({ actions }) => {
           ))}
         </ul>
       </div>
-    </>
+    </div>
   );
 };
 

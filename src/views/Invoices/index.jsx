@@ -85,13 +85,15 @@ const Invoices = () => {
         data={filteredInvoices}
         actions={[
           {
-            title: "Edit",
-            handler: () => {},
+            title: "View Details",
+            handler: (id) => {
+              console.log("click");
+              navigate(`/invoice/view/${id}`);
+            },
           },
           {
-            title: "Delete",
-            variant: "danger",
-            handler: () => {},
+            title: "Generate Report",
+            handler: (id) => {},
           },
         ]}
       />

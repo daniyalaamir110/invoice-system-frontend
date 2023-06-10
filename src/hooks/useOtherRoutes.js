@@ -2,6 +2,8 @@ import AddClient from "../views/AddClient";
 import AddTag from "../views/AddTag";
 import CreateInvoice from "../views/CreateInvoice";
 import EditClient from "../views/EditClient";
+import EditTag from "../views/EditTag";
+import ViewInvoice from "../views/ViewInvoice";
 
 const useOtherRoutes = () => {
   return [
@@ -51,6 +53,21 @@ const useOtherRoutes = () => {
       ],
     },
     {
+      path: "/tag/edit/:id",
+      title: "Edit tag",
+      element: <EditTag />,
+      breadcrumbs: [
+        {
+          path: "/tag",
+          title: "Tags",
+        },
+        {
+          path: "/tag/edit/:id",
+          title: "Edit tag",
+        },
+      ],
+    },
+    {
       path: "/invoice/create",
       title: "Create invoice",
       element: <CreateInvoice />,
@@ -62,6 +79,21 @@ const useOtherRoutes = () => {
         {
           path: "/invoice/create",
           title: "Create invoice",
+        },
+      ],
+    },
+    {
+      path: "/invoice/view/:id",
+      title: "Invoice Details",
+      element: <ViewInvoice />,
+      breadcrumbs: [
+        {
+          path: "/invoice",
+          title: "Invoices",
+        },
+        {
+          path: "/invoice/view/:id",
+          title: "Invoice Details",
         },
       ],
     },

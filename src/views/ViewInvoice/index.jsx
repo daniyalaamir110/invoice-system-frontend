@@ -4,39 +4,33 @@ import Button from "../../components/Button";
 import TextInput from "../../components/TextInput";
 import { CheckIcon } from "../../icons";
 import _ from "lodash";
-import clients from "../Clients/clients.json";
+import tags from "../Tags/tags.json";
 
-const EditClient = () => {
+const ViewInvoice = () => {
   const navigate = useNavigate();
 
   const params = useParams();
 
   const id = +params.id;
 
-  const client = _.find(clients, { id });
+  const tag = _.find(tags, { id });
 
-  const [name, setName] = useState(client.name);
-  const [company, setCompany] = useState(client.company);
-  const [phone, setPhone] = useState(client.phone);
+  const [name, setName] = useState(tag.name);
+  const [price, setPrice] = useState(tag.price);
 
   const [loading, setLoading] = useState(false);
 
   return (
     <div className="pt-5 w-[50%]">
       <TextInput
-        label="Client Name"
+        label="Tag Name"
         value={name}
         onChange={({ target: { value } }) => setName(value)}
       />
       <TextInput
-        label="Company Name"
-        value={company}
-        onChange={({ target: { value } }) => setCompany(value)}
-      />
-      <TextInput
-        label="Phone"
-        value={phone}
-        onChange={({ target: { value } }) => setPhone(value)}
+        label="Price ($)"
+        value={price}
+        onChange={({ target: { value } }) => setPrice(value)}
       />
       <Button
         text="Submit"
@@ -45,7 +39,7 @@ const EditClient = () => {
           setLoading(true);
           setTimeout(() => {
             setLoading(false);
-            navigate("/client");
+            navigate("/tag");
           }, 1000);
         }}
         loading={loading}
@@ -55,4 +49,4 @@ const EditClient = () => {
   );
 };
 
-export default EditClient;
+export default ViewInvoice;

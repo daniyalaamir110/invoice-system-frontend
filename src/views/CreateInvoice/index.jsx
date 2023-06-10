@@ -14,20 +14,16 @@ const CreateInvoice = () => {
   const [client, setClient] = useState(null);
 
   return (
-    <div className="pt-5">
-      <div className="w-[50%]">
-        <AutoComplete
-          label="Client"
-          value={client}
-          setValue={setClient}
-          options={clients}
-          convertor={(client) => `${client.id} - ${client.name}`}
-          searchBy={["id", "name"]}
-        />
-      </div>
-      <div className="w-[50%]">
-        <MultiInput />
-      </div>
+    <div className="pt-5 w-[50%]">
+      <AutoComplete
+        label="Client"
+        value={client}
+        setValue={setClient}
+        options={clients}
+        convertor={(client) => `${client.id} - ${client.name}`}
+        searchBy={["id", "name"]}
+      />
+      <MultiInput />
       <Button
         text="Submit"
         variant="primary"

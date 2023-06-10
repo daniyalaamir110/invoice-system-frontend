@@ -10,7 +10,7 @@ const AddClient = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="pt-5">
+    <div className="pt-5 w-[50%]">
       <TextInput label="Client Name" />
       <TextInput label="Company Name" />
       <TextInput label="Phone" />

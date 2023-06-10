@@ -41,7 +41,10 @@ const Tags = () => {
         actions={[
           {
             title: "Edit",
-            handler: () => {},
+            handler: (id) => {
+              console.log("click");
+              navigate(`/tag/edit/${id}`);
+            },
           },
           {
             title: "Delete",

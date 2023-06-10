@@ -51,6 +51,7 @@ const Clients = () => {
           {
             title: "Edit",
             handler: (id) => {
+              console.log("click");
               navigate(`/client/edit/${id}`);
             },
           },

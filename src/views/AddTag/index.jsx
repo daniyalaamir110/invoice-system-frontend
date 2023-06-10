@@ -10,7 +10,7 @@ const AddTag = () => {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="pt-5">
+    <div className="pt-5 w-[50%]">
       <TextInput label="Tag Name" />
       <TextInput label="Price ($)" />
       <Button
